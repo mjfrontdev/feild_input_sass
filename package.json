@@ -1,0 +1,22 @@
+{
+  "name": "sass-fields",
+  "version": "1.0.0",
+  "description": "انواع فیلدهای فرم با Sass",
+  "scripts": {
+    "sass": "sass sass/main.scss css/main.css",
+    "sass:watch": "sass --watch sass/main.scss css/main.css",
+    "sass:compressed": "sass sass/main.scss css/main.css --style compressed"
+  },
+  "keywords": [
+    "sass",
+    "fields",
+    "forms",
+    "css"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "sass": "^1.69.0"
+  }
+}
+

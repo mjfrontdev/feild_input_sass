@@ -1,0 +1,88 @@
+// ============================================
+// Variables
+// ============================================
+
+// Colors
+$primary-color: #2563eb;
+$primary-dark: #1e40af;
+$primary-light: #3b82f6;
+$secondary-color: #10b981;
+$secondary-dark: #059669;
+$danger-color: #ef4444;
+$danger-dark: #dc2626;
+$warning-color: #f59e0b;
+$warning-dark: #d97706;
+$success-color: #22c55e;
+$text-color: #1f2937;
+$text-light: #6b7280;
+$text-lighter: #9ca3af;
+$border-color: #e5e7eb;
+$border-dark: #d1d5db;
+$bg-color: #ffffff;
+$bg-light: #f9fafb;
+$bg-dark: #f3f4f6;
+
+// Typography
+$font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+$font-size-base: 1rem;
+$font-size-sm: 0.875rem;
+$font-size-lg: 1.125rem;
+$font-size-xl: 1.25rem;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Spacing
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+$spacing-2xl: 3rem;
+
+// Border
+$border-radius-sm: 0.25rem;
+$border-radius-md: 0.5rem;
+$border-radius-lg: 0.75rem;
+$border-width: 1px;
+$border-width-thick: 2px;
+
+// Field Sizes
+$field-height-sm: 2rem;
+$field-height-md: 2.5rem;
+$field-height-lg: 3rem;
+$field-padding-x-sm: 0.75rem;
+$field-padding-x-md: 1rem;
+$field-padding-x-lg: 1.25rem;
+
+// Transitions
+$transition-fast: 0.15s ease;
+$transition-base: 0.2s ease;
+$transition-slow: 0.3s ease;
+
+// Shadows
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-focus: 0 0 0 3px rgba(37, 99, 235, 0.1);
+
+// Z-index
+$z-index-dropdown: 1000;
+$z-index-modal: 2000;
+
+// ============================================
+// Dark Theme Colors
+// ============================================
+
+// Dark Mode Colors
+$dark-bg-color: #0f172a;
+$dark-bg-light: #1e293b;
+$dark-bg-dark: #020617;
+$dark-text-color: #f1f5f9;
+$dark-text-light: #cbd5e1;
+$dark-text-lighter: #94a3b8;
+$dark-border-color: #334155;
+$dark-border-dark: #475569;
+$dark-shadow-focus: 0 0 0 3px rgba(37, 99, 235, 0.3);
+

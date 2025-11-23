@@ -1,0 +1,785 @@
+// ============================================
+// Fields Component
+// ============================================
+
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+// ============================================
+// Field Wrapper
+// ============================================
+
+.field-wrapper {
+  margin-bottom: $spacing-lg;
+  
+  label {
+    display: block;
+    font-weight: $font-weight-medium;
+    font-size: $font-size-sm;
+    color: $text-color;
+    margin-bottom: $spacing-xs;
+    
+    &.required::after {
+      content: ' *';
+      color: $danger-color;
+    }
+  }
+  
+  .field-help {
+    font-size: $font-size-sm;
+    color: $text-light;
+    margin-top: $spacing-xs;
+  }
+  
+  .field-error {
+    font-size: $font-size-sm;
+    color: $danger-color;
+    margin-top: $spacing-xs;
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    
+    &::before {
+      content: '⚠';
+      font-size: 1rem;
+    }
+  }
+  
+  .field-success {
+    font-size: $font-size-sm;
+    color: $success-color;
+    margin-top: $spacing-xs;
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    
+    &::before {
+      content: '✓';
+      font-size: 1rem;
+    }
+  }
+}
+
+// ============================================
+// Input Fields
+// ============================================
+
+.field-input {
+  @include field-base;
+  @include field-md;
+  
+  &--sm {
+    @include field-sm;
+  }
+  
+  &--lg {
+    @include field-lg;
+  }
+  
+  &--error {
+    @include field-error;
+  }
+  
+  &--success {
+    @include field-success;
+  }
+  
+  &--warning {
+    @include field-warning;
+  }
+  
+  // Input Types
+  &[type="password"] {
+    letter-spacing: 0.1em;
+  }
+  
+  &[type="number"] {
+    -moz-appearance: textfield;
+    
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+  
+  &[type="date"],
+  &[type="time"],
+  &[type="datetime-local"],
+  &[type="month"],
+  &[type="week"] {
+    position: relative;
+    cursor: pointer;
+    
+    &::-webkit-calendar-picker-indicator {
+      cursor: pointer;
+      opacity: 0.6;
+      transition: opacity $transition-base;
+      
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+  
+  &[type="search"] {
+    &::-webkit-search-decoration,
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-results-button,
+    &::-webkit-search-results-decoration {
+      -webkit-appearance: none;
+    }
+  }
+}
+
+// ============================================
+// Textarea
+// ============================================
+
+.field-textarea {
+  @include field-base;
+  min-height: 6rem;
+  padding: $spacing-md;
+  resize: vertical;
+  font-family: inherit;
+  
+  &--sm {
+    min-height: 4rem;
+    padding: $spacing-sm;
+    font-size: $font-size-sm;
+  }
+  
+  &--lg {
+    min-height: 8rem;
+    padding: $spacing-lg;
+    font-size: $font-size-lg;
+  }
+  
+  &--error {
+    @include field-error;
+  }
+  
+  &--success {
+    @include field-success;
+  }
+  
+  &--warning {
+    @include field-warning;
+  }
+  
+  &--no-resize {
+    resize: none;
+  }
+}
+
+// ============================================
+// Select
+// ============================================
+
+.field-select {
+  @include field-base;
+  @include field-md;
+  padding-right: 2.5rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right $spacing-md center;
+  background-size: 12px;
+  appearance: none;
+  cursor: pointer;
+  
+  &--sm {
+    @include field-sm;
+    padding-right: 2rem;
+  }
+  
+  &--lg {
+    @include field-lg;
+    padding-right: 3rem;
+  }
+  
+  &--error {
+    @include field-error;
+  }
+  
+  &--success {
+    @include field-success;
+  }
+  
+  &--warning {
+    @include field-warning;
+  }
+  
+  &:disabled {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239ca3af' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  }
+  
+  option {
+    padding: $spacing-sm;
+    background-color: $bg-color;
+    color: $text-color;
+  }
+}
+
+// ============================================
+// Checkbox
+// ============================================
+
+.field-checkbox {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  
+  input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    width: 0;
+    height: 0;
+    
+    &:checked ~ .field-checkbox__indicator {
+      background-color: $primary-color;
+      border-color: $primary-color;
+      
+      &::after {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    &:disabled ~ .field-checkbox__indicator {
+      background-color: $bg-light;
+      border-color: $border-color;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+    
+    &:disabled ~ .field-checkbox__label {
+      color: $text-lighter;
+      cursor: not-allowed;
+    }
+    
+    &:focus ~ .field-checkbox__indicator {
+      box-shadow: $shadow-focus;
+    }
+  }
+  
+  &__indicator {
+    position: relative;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: $border-width-thick solid $border-color;
+    border-radius: $border-radius-sm;
+    background-color: $bg-color;
+    transition: all $transition-base;
+    flex-shrink: 0;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 0.375rem;
+      height: 0.625rem;
+      border: solid $bg-color;
+      border-width: 0 2px 2px 0;
+      transform: translate(-50%, -60%) rotate(45deg) scale(0);
+      opacity: 0;
+      transition: all $transition-base;
+    }
+  }
+  
+  &__label {
+    margin-left: $spacing-sm;
+    font-size: $font-size-base;
+    color: $text-color;
+    line-height: 1.5;
+  }
+  
+  &--error {
+    .field-checkbox__indicator {
+      border-color: $danger-color;
+    }
+  }
+  
+  &--sm {
+    .field-checkbox__indicator {
+      width: 1rem;
+      height: 1rem;
+      
+      &::after {
+        width: 0.25rem;
+        height: 0.5rem;
+      }
+    }
+    
+    .field-checkbox__label {
+      font-size: $font-size-sm;
+    }
+  }
+  
+  &--lg {
+    .field-checkbox__indicator {
+      width: 1.5rem;
+      height: 1.5rem;
+      
+      &::after {
+        width: 0.5rem;
+        height: 0.75rem;
+      }
+    }
+    
+    .field-checkbox__label {
+      font-size: $font-size-lg;
+    }
+  }
+}
+
+// ============================================
+// Radio
+// ============================================
+
+.field-radio {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  
+  input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    width: 0;
+    height: 0;
+    
+    &:checked ~ .field-radio__indicator {
+      border-color: $primary-color;
+      
+      &::after {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    &:disabled ~ .field-radio__indicator {
+      background-color: $bg-light;
+      border-color: $border-color;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+    
+    &:disabled ~ .field-radio__label {
+      color: $text-lighter;
+      cursor: not-allowed;
+    }
+    
+    &:focus ~ .field-radio__indicator {
+      box-shadow: $shadow-focus;
+    }
+  }
+  
+  &__indicator {
+    position: relative;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: $border-width-thick solid $border-color;
+    border-radius: 50%;
+    background-color: $bg-color;
+    transition: all $transition-base;
+    flex-shrink: 0;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      background-color: $primary-color;
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      transition: all $transition-base;
+    }
+  }
+  
+  &__label {
+    margin-left: $spacing-sm;
+    font-size: $font-size-base;
+    color: $text-color;
+    line-height: 1.5;
+  }
+  
+  &--error {
+    .field-radio__indicator {
+      border-color: $danger-color;
+    }
+  }
+  
+  &--sm {
+    .field-radio__indicator {
+      width: 1rem;
+      height: 1rem;
+      
+      &::after {
+        width: 0.375rem;
+        height: 0.375rem;
+      }
+    }
+    
+    .field-radio__label {
+      font-size: $font-size-sm;
+    }
+  }
+  
+  &--lg {
+    .field-radio__indicator {
+      width: 1.5rem;
+      height: 1.5rem;
+      
+      &::after {
+        width: 0.625rem;
+        height: 0.625rem;
+      }
+    }
+    
+    .field-radio__label {
+      font-size: $font-size-lg;
+    }
+  }
+}
+
+// ============================================
+// Radio Group
+// ============================================
+
+.field-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  
+  &--inline {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: $spacing-lg;
+  }
+}
+
+// ============================================
+// Checkbox Group
+// ============================================
+
+.field-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  
+  &--inline {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: $spacing-lg;
+  }
+}
+
+// ============================================
+// File Input
+// ============================================
+
+.field-file {
+  position: relative;
+  
+  input[type="file"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    
+    &:focus + .field-file__label {
+      box-shadow: $shadow-focus;
+    }
+    
+    &:disabled + .field-file__label {
+      background-color: $bg-light;
+      border-color: $border-color;
+      color: $text-lighter;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+  }
+  
+  &__label {
+    @include field-base;
+    @include field-md;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-sm;
+    cursor: pointer;
+    background-color: $bg-light;
+    border-style: dashed;
+    transition: all $transition-base;
+    
+    &:hover {
+      background-color: $bg-dark;
+      border-color: $primary-color;
+    }
+    
+    &::before {
+      content: '📁';
+      font-size: 1.25rem;
+    }
+  }
+  
+  &__filename {
+    margin-top: $spacing-sm;
+    font-size: $font-size-sm;
+    color: $text-light;
+  }
+  
+  &--error {
+    .field-file__label {
+      @include field-error;
+    }
+  }
+  
+  &--sm {
+    .field-file__label {
+      @include field-sm;
+    }
+  }
+  
+  &--lg {
+    .field-file__label {
+      @include field-lg;
+    }
+  }
+}
+
+// ============================================
+// Range Input
+// ============================================
+
+.field-range {
+  width: 100%;
+  height: 0.5rem;
+  border-radius: $border-radius-lg;
+  background: $bg-dark;
+  outline: none;
+  -webkit-appearance: none;
+  
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    background: $primary-color;
+    cursor: pointer;
+    border: 2px solid $bg-color;
+    box-shadow: $shadow-md;
+    transition: all $transition-base;
+    
+    &:hover {
+      background: $primary-dark;
+      transform: scale(1.1);
+    }
+  }
+  
+  &::-moz-range-thumb {
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    background: $primary-color;
+    cursor: pointer;
+    border: 2px solid $bg-color;
+    box-shadow: $shadow-md;
+    transition: all $transition-base;
+    
+    &:hover {
+      background: $primary-dark;
+      transform: scale(1.1);
+    }
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    
+    &::-webkit-slider-thumb,
+    &::-moz-range-thumb {
+      cursor: not-allowed;
+    }
+  }
+  
+  &--error {
+    background: rgba(239, 68, 68, 0.2);
+    
+    &::-webkit-slider-thumb,
+    &::-moz-range-thumb {
+      background: $danger-color;
+    }
+  }
+}
+
+// ============================================
+// Input Group (with icon or button)
+// ============================================
+
+.field-input-group {
+  position: relative;
+  display: flex;
+  width: 100%;
+  
+  .field-input {
+    flex: 1;
+    
+    &:not(:first-child) {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+    
+    &:not(:last-child) {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+  
+  &__prepend,
+  &__append {
+    display: flex;
+    align-items: center;
+    padding: 0 $spacing-md;
+    background-color: $bg-light;
+    border: $border-width solid $border-color;
+    color: $text-light;
+    white-space: nowrap;
+  }
+  
+  &__prepend {
+    border-right: none;
+    border-radius: $border-radius-md 0 0 $border-radius-md;
+  }
+  
+  &__append {
+    border-left: none;
+    border-radius: 0 $border-radius-md $border-radius-md 0;
+  }
+  
+  &--error {
+    .field-input {
+      @include field-error;
+    }
+    
+    .field-input-group__prepend,
+    .field-input-group__append {
+      border-color: $danger-color;
+    }
+  }
+}
+
+// ============================================
+// Switch (Toggle)
+// ============================================
+
+.field-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  
+  input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    
+    &:checked ~ .field-switch__slider {
+      background-color: $primary-color;
+      
+      &::before {
+        transform: translateX(1.25rem);
+      }
+    }
+    
+    &:disabled ~ .field-switch__slider {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    &:focus ~ .field-switch__slider {
+      box-shadow: $shadow-focus;
+    }
+  }
+  
+  &__slider {
+    position: relative;
+    width: 2.75rem;
+    height: 1.5rem;
+    background-color: $border-color;
+    border-radius: 1rem;
+    transition: background-color $transition-base;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0.25rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1rem;
+      height: 1rem;
+      background-color: $bg-color;
+      border-radius: 50%;
+      transition: transform $transition-base;
+      box-shadow: $shadow-sm;
+    }
+  }
+  
+  &__label {
+    margin-left: $spacing-sm;
+    font-size: $font-size-base;
+    color: $text-color;
+  }
+  
+  &--error {
+    .field-switch__slider {
+      background-color: rgba(239, 68, 68, 0.3);
+    }
+  }
+  
+  &--sm {
+    .field-switch__slider {
+      width: 2rem;
+      height: 1.25rem;
+      
+      &::before {
+        width: 0.75rem;
+        height: 0.75rem;
+      }
+    }
+    
+    input[type="checkbox"]:checked ~ .field-switch__slider::before {
+      transform: translateX(0.75rem) translateY(-50%);
+    }
+  }
+  
+  &--lg {
+    .field-switch__slider {
+      width: 3.5rem;
+      height: 1.75rem;
+      
+      &::before {
+        width: 1.25rem;
+        height: 1.25rem;
+      }
+    }
+    
+    input[type="checkbox"]:checked ~ .field-switch__slider::before {
+      transform: translateX(1.75rem) translateY(-50%);
+    }
+  }
+}
+

@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>انواع فیلدها - Sass Fields</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="container">
+        <header style="padding: 2rem 0; text-align: center; position: relative;">
+            <button id="theme-toggle" class="theme-toggle">
+                <span id="theme-icon" class="theme-toggle__icon">🌙</span>
+                <span id="theme-text" class="theme-toggle__text">تم دارک</span>
+            </button>
+            <h1>نمایش انواع فیلدها</h1>
+            <p class="header-subtitle" style="color: #6b7280; margin-top: 0.5rem;">تمام انواع فیلدهای فرم با Sass</p>
+        </header>
+
+        <div style="max-width: 800px; margin: 0 auto; background: white; padding: 2rem; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+            
+            <!-- Input Fields -->
+            <section style="margin-bottom: 3rem;">
+                <h2>فیلدهای Input</h2>
+                
+                <div class="field-wrapper">
+                    <label for="text-input">فیلد متنی</label>
+                    <input type="text" id="text-input" class="field-input" placeholder="متن خود را وارد کنید">
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="email-input">ایمیل</label>
+                    <input type="email" id="email-input" class="field-input" placeholder="example@domain.com">
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="password-input">رمز عبور</label>
+                    <input type="password" id="password-input" class="field-input" placeholder="رمز عبور">
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="number-input">عدد</label>
+                    <input type="number" id="number-input" class="field-input" placeholder="123">
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="tel-input">تلفن</label>
+                    <input type="tel" id="tel-input" class="field-input" placeholder="09123456789">
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="url-input">آدرس وب</label>
+                    <input type="url" id="url-input" class="field-input" placeholder="https://example.com">
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="search-input">جستجو</label>
+                    <input type="search" id="search-input" class="field-input" placeholder="جستجو...">
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="date-input">تاریخ</label>
+                    <input type="date" id="date-input" class="field-input">
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="time-input">زمان</label>
+                    <input type="time" id="time-input" class="field-input">
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="datetime-input">تاریخ و زمان</label>
+                    <input type="datetime-local" id="datetime-input" class="field-input">
+                </div>
+
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem;">سایزهای مختلف</h3>
+
+                <div class="field-wrapper">
+                    <label for="input-sm">فیلد کوچک</label>
+                    <input type="text" id="input-sm" class="field-input field-input--sm" placeholder="Small">
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="input-md">فیلد متوسط (پیش‌فرض)</label>
+                    <input type="text" id="input-md" class="field-input field-input--md" placeholder="Medium">
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="input-lg">فیلد بزرگ</label>
+                    <input type="text" id="input-lg" class="field-input field-input--lg" placeholder="Large">
+                </div>
+
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem;">وضعیت‌های مختلف</h3>
+
+                <div class="field-wrapper">
+                    <label for="input-error">فیلد با خطا</label>
+                    <input type="text" id="input-error" class="field-input field-input--error" placeholder="خطا">
+                    <div class="field-error">این فیلد اجباری است</div>
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="input-success">فیلد موفق</label>
+                    <input type="text" id="input-success" class="field-input field-input--success" placeholder="موفق">
+                    <div class="field-success">اطلاعات صحیح است</div>
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="input-warning">فیلد هشدار</label>
+                    <input type="text" id="input-warning" class="field-input field-input--warning" placeholder="هشدار">
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="input-disabled">فیلد غیرفعال</label>
+                    <input type="text" id="input-disabled" class="field-input" placeholder="غیرفعال" disabled>
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="input-readonly">فیلد فقط خواندنی</label>
+                    <input type="text" id="input-readonly" class="field-input" value="این فیلد فقط خواندنی است" readonly>
+                </div>
+
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem;">انواع انیمیشن‌ها</h3>
+
+                <div class="field-wrapper field-wrapper--fade-in">
+                    <label for="input-fade-in">Fade In - محو شدن به بالا</label>
+                    <input type="text" id="input-fade-in" class="field-input field-input--fade-in" placeholder="انیمیشن محو شدن">
+                </div>
+
+                <div class="field-wrapper field-wrapper--slide-down">
+                    <label for="input-slide-in">Slide In - اسلاید از راست</label>
+                    <input type="text" id="input-slide-in" class="field-input field-input--slide-in" placeholder="انیمیشن اسلاید">
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="input-bounce">Bounce - جهش</label>
+                    <input type="text" id="input-bounce" class="field-input field-input--bounce" placeholder="انیمیشن جهش">
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="input-scale-in">Scale In - بزرگ شدن</label>
+                    <input type="text" id="input-scale-in" class="field-input field-input--scale-in" placeholder="انیمیشن بزرگ شدن">
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="input-zoom-in">Zoom In - زوم</label>
+                    <input type="text" id="input-zoom-in" class="field-input field-input--zoom-in" placeholder="انیمیشن زوم">
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="input-float">Float - شناور</label>
+                    <input type="text" id="input-float" class="field-input field-input--float" placeholder="انیمیشن شناور (پیوسته)">
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="input-pulse">Pulse - ضربان</label>
+                    <input type="text" id="input-pulse" class="field-input field-input--pulse" placeholder="انیمیشن ضربان (پیوسته)">
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="input-shake-error">Shake on Error - تکان با خطا</label>
+                    <input type="text" id="input-shake-error" class="field-input field-input--shake field-input--error" placeholder="روی فیلد کلیک و خالی بگذارید" required>
+                    <div class="field-error">فیلد اجباری است!</div>
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="input-animated-placeholder">Animated Placeholder - placeholder متحرک</label>
+                    <input type="text" id="input-animated-placeholder" class="field-input field-input--animated-placeholder" placeholder="این placeholder متحرک است">
+                </div>
+
+                <div class="field-wrapper field-wrapper--success">
+                    <label for="input-success-icon">Success with Icon - موفق با آیکون</label>
+                    <input type="text" id="input-success-icon" class="field-input field-input--success" placeholder="تایپ کنید" value="ورودی صحیح">
+                    <div class="field-success">اطلاعات صحیح است</div>
+                </div>
+
+                <div class="field-wrapper field-wrapper--error">
+                    <label for="input-error-icon">Error with Icon - خطا با آیکون</label>
+                    <input type="text" id="input-error-icon" class="field-input field-input--error" placeholder="خطا" value="خطا">
+                    <div class="field-error">این فیلد اجباری است</div>
+                </div>
+            </section>
+
+            <!-- Textarea -->
+            <section style="margin-bottom: 3rem;">
+                <h2>Textarea</h2>
+                
+                <div class="field-wrapper field-wrapper--fade-in">
+                    <label for="textarea">متن چندخطی</label>
+                    <textarea id="textarea" class="field-textarea field-textarea--fade-in" rows="4" placeholder="متن خود را وارد کنید"></textarea>
+                </div>
+
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem;">انیمیشن‌های Textarea</h3>
+
+                <div class="field-wrapper">
+                    <label for="textarea-slide-in">Slide In - اسلاید</label>
+                    <textarea id="textarea-slide-in" class="field-textarea field-textarea--slide-in" rows="3" placeholder="انیمیشن اسلاید"></textarea>
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="textarea-bounce">Bounce - جهش</label>
+                    <textarea id="textarea-bounce" class="field-textarea field-textarea--bounce" rows="3" placeholder="انیمیشن جهش"></textarea>
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="textarea-float">Float - شناور</label>
+                    <textarea id="textarea-float" class="field-textarea field-textarea--float" rows="3" placeholder="انیمیشن شناور (پیوسته)"></textarea>
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="textarea-sm">Textarea کوچک</label>
+                    <textarea id="textarea-sm" class="field-textarea field-textarea--sm" rows="3" placeholder="Small"></textarea>
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="textarea-lg">Textarea بزرگ</label>
+                    <textarea id="textarea-lg" class="field-textarea field-textarea--lg" rows="5" placeholder="Large"></textarea>
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="textarea-no-resize">بدون تغییر اندازه</label>
+                    <textarea id="textarea-no-resize" class="field-textarea field-textarea--no-resize" rows="3" placeholder="No resize"></textarea>
+                </div>
+            </section>
+
+            <!-- Select -->
+            <section style="margin-bottom: 3rem;">
+                <h2>Select (Dropdown)</h2>
+                
+                <div class="field-wrapper field-wrapper--scale-in">
+                    <label for="select">انتخاب کنید</label>
+                    <select id="select" class="field-select field-select--scale-in">
+                        <option value="">یک مورد را انتخاب کنید</option>
+                        <option value="1">گزینه ۱</option>
+                        <option value="2">گزینه ۲</option>
+                        <option value="3">گزینه ۳</option>
+                        <option value="4">گزینه ۴</option>
+                    </select>
+                </div>
+
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem;">انیمیشن‌های Select</h3>
+
+                <div class="field-wrapper">
+                    <label for="select-fade-in">Fade In - محو شدن</label>
+                    <select id="select-fade-in" class="field-select field-select--fade-in">
+                        <option value="">Fade In Animation</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                    </select>
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="select-zoom-in">Zoom In - زوم</label>
+                    <select id="select-zoom-in" class="field-select field-select--zoom-in">
+                        <option value="">Zoom In Animation</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                    </select>
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="select-sm">Select کوچک</label>
+                    <select id="select-sm" class="field-select field-select--sm">
+                        <option value="">Small</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                    </select>
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="select-lg">Select بزرگ</label>
+                    <select id="select-lg" class="field-select field-select--lg">
+                        <option value="">Large</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Checkbox -->
+            <section style="margin-bottom: 3rem;">
+                <h2>Checkbox</h2>
+                
+                <div class="field-wrapper">
+                    <label class="field-checkbox">
+                        <input type="checkbox" checked>
+                        <span class="field-checkbox__indicator"></span>
+                        <span class="field-checkbox__label">مورد انتخاب شده</span>
+                    </label>
+                </div>
+
+                <div class="field-wrapper">
+                    <label class="field-checkbox">
+                        <input type="checkbox">
+                        <span class="field-checkbox__indicator"></span>
+                        <span class="field-checkbox__label">مورد انتخاب نشده</span>
+                    </label>
+                </div>
+
+                <div class="field-wrapper">
+                    <label class="field-checkbox">
+                        <input type="checkbox" disabled>
+                        <span class="field-checkbox__indicator"></span>
+                        <span class="field-checkbox__label">غیرفعال</span>
+                    </label>
+                </div>
+
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem;">سایزهای مختلف</h3>
+
+                <div class="field-wrapper">
+                    <label class="field-checkbox field-checkbox--sm">
+                        <input type="checkbox">
+                        <span class="field-checkbox__indicator"></span>
+                        <span class="field-checkbox__label">کوچک</span>
+                    </label>
+                </div>
+
+                <div class="field-wrapper">
+                    <label class="field-checkbox field-checkbox--lg">
+                        <input type="checkbox">
+                        <span class="field-checkbox__indicator"></span>
+                        <span class="field-checkbox__label">بزرگ</span>
+                    </label>
+                </div>
+
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem;">گروه Checkbox</h3>
+
+                <div class="field-wrapper">
+                    <label>علاقه‌مندی‌ها</label>
+                    <div class="field-checkbox-group">
+                        <label class="field-checkbox">
+                            <input type="checkbox" name="interests" value="sport">
+                            <span class="field-checkbox__indicator"></span>
+                            <span class="field-checkbox__label">ورزش</span>
+                        </label>
+                        <label class="field-checkbox">
+                            <input type="checkbox" name="interests" value="music">
+                            <span class="field-checkbox__indicator"></span>
+                            <span class="field-checkbox__label">موسیقی</span>
+                        </label>
+                        <label class="field-checkbox">
+                            <input type="checkbox" name="interests" value="reading">
+                            <span class="field-checkbox__indicator"></span>
+                            <span class="field-checkbox__label">مطالعه</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="field-wrapper">
+                    <label>گزینه‌ها (inline)</label>
+                    <div class="field-checkbox-group field-checkbox-group--inline">
+                        <label class="field-checkbox">
+                            <input type="checkbox" name="options" value="1">
+                            <span class="field-checkbox__indicator"></span>
+                            <span class="field-checkbox__label">گزینه ۱</span>
+                        </label>
+                        <label class="field-checkbox">
+                            <input type="checkbox" name="options" value="2">
+                            <span class="field-checkbox__indicator"></span>
+                            <span class="field-checkbox__label">گزینه ۲</span>
+                        </label>
+                        <label class="field-checkbox">
+                            <input type="checkbox" name="options" value="3">
+                            <span class="field-checkbox__indicator"></span>
+                            <span class="field-checkbox__label">گزینه ۳</span>
+                        </label>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem;">انیمیشن‌های Checkbox</h3>
+
+                <div class="field-wrapper">
+                    <label>Checkbox با Bounce</label>
+                    <div class="field-checkbox-group">
+                        <label class="field-checkbox field-checkbox--bounce">
+                            <input type="checkbox" name="bounce-checkbox" value="1">
+                            <span class="field-checkbox__indicator"></span>
+                            <span class="field-checkbox__label">Bounce Animation</span>
+                        </label>
+                        <label class="field-checkbox field-checkbox--pulse">
+                            <input type="checkbox" name="pulse-checkbox" value="2">
+                            <span class="field-checkbox__indicator"></span>
+                            <span class="field-checkbox__label">Pulse Animation</span>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Radio -->
+            <section style="margin-bottom: 3rem;">
+                <h2>Radio Button</h2>
+                
+                <div class="field-wrapper">
+                    <label class="field-radio">
+                        <input type="radio" name="radio-example" checked>
+                        <span class="field-radio__indicator"></span>
+                        <span class="field-radio__label">انتخاب شده</span>
+                    </label>
+                </div>
+
+                <div class="field-wrapper">
+                    <label class="field-radio">
+                        <input type="radio" name="radio-example">
+                        <span class="field-radio__indicator"></span>
+                        <span class="field-radio__label">انتخاب نشده</span>
+                    </label>
+                </div>
+
+                <div class="field-wrapper">
+                    <label class="field-radio">
+                        <input type="radio" name="radio-example" disabled>
+                        <span class="field-radio__indicator"></span>
+                        <span class="field-radio__label">غیرفعال</span>
+                    </label>
+                </div>
+
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem;">سایزهای مختلف</h3>
+
+                <div class="field-wrapper">
+                    <label class="field-radio field-radio--sm">
+                        <input type="radio" name="radio-size">
+                        <span class="field-radio__indicator"></span>
+                        <span class="field-radio__label">کوچک</span>
+                    </label>
+                </div>
+
+                <div class="field-wrapper">
+                    <label class="field-radio field-radio--lg">
+                        <input type="radio" name="radio-size">
+                        <span class="field-radio__indicator"></span>
+                        <span class="field-radio__label">بزرگ</span>
+                    </label>
+                </div>
+
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem;">گروه Radio</h3>
+
+                <div class="field-wrapper">
+                    <label>جنسیت</label>
+                    <div class="field-radio-group">
+                        <label class="field-radio">
+                            <input type="radio" name="gender" value="male">
+                            <span class="field-radio__indicator"></span>
+                            <span class="field-radio__label">مرد</span>
+                        </label>
+                        <label class="field-radio">
+                            <input type="radio" name="gender" value="female">
+                            <span class="field-radio__indicator"></span>
+                            <span class="field-radio__label">زن</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="field-wrapper">
+                    <label>رتبه (inline)</label>
+                    <div class="field-radio-group field-radio-group--inline">
+                        <label class="field-radio">
+                            <input type="radio" name="rating" value="1">
+                            <span class="field-radio__indicator"></span>
+                            <span class="field-radio__label">عالی</span>
+                        </label>
+                        <label class="field-radio">
+                            <input type="radio" name="rating" value="2">
+                            <span class="field-radio__indicator"></span>
+                            <span class="field-radio__label">خوب</span>
+                        </label>
+                        <label class="field-radio">
+                            <input type="radio" name="rating" value="3">
+                            <span class="field-radio__indicator"></span>
+                            <span class="field-radio__label">متوسط</span>
+                        </label>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem;">انیمیشن‌های Radio</h3>
+
+                <div class="field-wrapper">
+                    <label>Radio با Bounce</label>
+                    <div class="field-radio-group">
+                        <label class="field-radio field-radio--bounce">
+                            <input type="radio" name="bounce-radio" value="1">
+                            <span class="field-radio__indicator"></span>
+                            <span class="field-radio__label">Bounce Animation</span>
+                        </label>
+                        <label class="field-radio field-radio--pulse">
+                            <input type="radio" name="pulse-radio" value="2">
+                            <span class="field-radio__indicator"></span>
+                            <span class="field-radio__label">Pulse Animation</span>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- File Input -->
+            <section style="margin-bottom: 3rem;">
+                <h2>File Input</h2>
+                
+                <div class="field-wrapper">
+                    <label class="field-file">
+                        <input type="file" id="file-input">
+                        <span class="field-file__label">انتخاب فایل</span>
+                    </label>
+                </div>
+
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem;">انیمیشن‌های File Input</h3>
+
+                <div class="field-wrapper">
+                    <label class="field-file field-file--pulse">
+                        <input type="file" id="file-input-pulse">
+                        <span class="field-file__label">Pulse Animation</span>
+                    </label>
+                </div>
+
+                <div class="field-wrapper">
+                    <label class="field-file field-file--float">
+                        <input type="file" id="file-input-float">
+                        <span class="field-file__label">Float Animation</span>
+                    </label>
+                </div>
+
+                <div class="field-wrapper">
+                    <label class="field-file field-file--sm">
+                        <input type="file" id="file-input-sm">
+                        <span class="field-file__label">انتخاب فایل (کوچک)</span>
+                    </label>
+                </div>
+
+                <div class="field-wrapper">
+                    <label class="field-file field-file--lg">
+                        <input type="file" id="file-input-lg">
+                        <span class="field-file__label">انتخاب فایل (بزرگ)</span>
+                    </label>
+                </div>
+
+                <div class="field-wrapper">
+                    <label class="field-file field-file--error">
+                        <input type="file" id="file-input-error">
+                        <span class="field-file__label">فایل با خطا</span>
+                    </label>
+                </div>
+            </section>
+
+            <!-- Range Input -->
+            <section style="margin-bottom: 3rem;">
+                <h2>Range Input</h2>
+                
+                <div class="field-wrapper">
+                    <label for="range-input">محدوده: <span id="range-value">50</span></label>
+                    <input type="range" id="range-input" class="field-range" min="0" max="100" value="50">
+                </div>
+
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem;">انیمیشن‌های Range</h3>
+
+                <div class="field-wrapper">
+                    <label for="range-pulse">Pulse Thumb - ضربان</label>
+                    <input type="range" id="range-pulse" class="field-range field-range--pulse" min="0" max="100" value="30">
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="range-glow">Glow Thumb - درخشش</label>
+                    <input type="range" id="range-glow" class="field-range field-range--glow" min="0" max="100" value="70">
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="range-input-error">محدوده با خطا</label>
+                    <input type="range" id="range-input-error" class="field-range field-range--error" min="0" max="100" value="30">
+                </div>
+
+                <div class="field-wrapper">
+                    <label for="range-disabled">محدوده غیرفعال</label>
+                    <input type="range" id="range-disabled" class="field-range" min="0" max="100" value="75" disabled>
+                </div>
+            </section>
+
+            <!-- Switch (Toggle) -->
+            <section style="margin-bottom: 3rem;">
+                <h2>Switch (Toggle)</h2>
+                
+                <div class="field-wrapper">
+                    <label class="field-switch">
+                        <input type="checkbox" checked>
+                        <span class="field-switch__slider"></span>
+                        <span class="field-switch__label">روشن</span>
+                    </label>
+                </div>
+
+                <div class="field-wrapper">
+                    <label class="field-switch">
+                        <input type="checkbox">
+                        <span class="field-switch__slider"></span>
+                        <span class="field-switch__label">خاموش</span>
+                    </label>
+                </div>
+
+                <div class="field-wrapper">
+                    <label class="field-switch">
+                        <input type="checkbox" disabled>
+                        <span class="field-switch__slider"></span>
+                        <span class="field-switch__label">غیرفعال</span>
+                    </label>
+                </div>
+
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem;">سایزهای مختلف</h3>
+
+                <div class="field-wrapper">
+                    <label class="field-switch field-switch--sm">
+                        <input type="checkbox" checked>
+                        <span class="field-switch__slider"></span>
+                        <span class="field-switch__label">کوچک</span>
+                    </label>
+                </div>
+
+                <div class="field-wrapper">
+                    <label class="field-switch field-switch--lg">
+                        <input type="checkbox">
+                        <span class="field-switch__slider"></span>
+                        <span class="field-switch__label">بزرگ</span>
+                    </label>
+                </div>
+
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem;">انیمیشن‌های Switch</h3>
+
+                <div class="field-wrapper">
+                    <label class="field-switch field-switch--bounce">
+                        <input type="checkbox" checked>
+                        <span class="field-switch__slider"></span>
+                        <span class="field-switch__label">Bounce Animation</span>
+                    </label>
+                </div>
+            </section>
+
+            <!-- Input Group -->
+            <section style="margin-bottom: 3rem;">
+                <h2>Input Group</h2>
+                
+                <div class="field-wrapper">
+                    <label>آیکون قبل از فیلد</label>
+                    <div class="field-input-group">
+                        <span class="field-input-group__prepend">@</span>
+                        <input type="text" class="field-input" placeholder="Username">
+                    </div>
+                </div>
+
+                <div class="field-wrapper">
+                    <label>آیکون بعد از فیلد</label>
+                    <div class="field-input-group">
+                        <input type="text" class="field-input" placeholder="Search">
+                        <span class="field-input-group__append">🔍</span>
+                    </div>
+                </div>
+
+                <div class="field-wrapper">
+                    <label>هر دو طرف</label>
+                    <div class="field-input-group">
+                        <span class="field-input-group__prepend">$</span>
+                        <input type="text" class="field-input" placeholder="Amount">
+                        <span class="field-input-group__append">.00</span>
+                    </div>
+                </div>
+
+                <div class="field-wrapper">
+                    <label>Input Group با خطا</label>
+                    <div class="field-input-group field-input-group--error">
+                        <span class="field-input-group__prepend">@</span>
+                        <input type="text" class="field-input" placeholder="Username">
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem;">انیمیشن‌های Input Group</h3>
+
+                <div class="field-wrapper">
+                    <label>Slide In Group</label>
+                    <div class="field-input-group field-input-group--slide-in">
+                        <span class="field-input-group__prepend">🔍</span>
+                        <input type="text" class="field-input" placeholder="جستجو...">
+                    </div>
+                </div>
+
+                <div class="field-wrapper">
+                    <label>Fade In Group</label>
+                    <div class="field-input-group field-input-group--fade-in">
+                        <span class="field-input-group__prepend">$</span>
+                        <input type="text" class="field-input" placeholder="مبلغ">
+                        <span class="field-input-group__append">.00</span>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const themeText = document.getElementById('theme-text');
+        const body = document.body;
+        const headerSubtitle = document.querySelector('.header-subtitle');
+        const contentDiv = document.querySelector('.container > div');
+
+        // Check localStorage for saved theme
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        // Initialize theme
+        function initTheme() {
+            const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+            setTheme(theme);
+        }
+
+        // Set theme
+        function setTheme(theme) {
+            if (theme === 'dark') {
+                body.classList.add('dark-mode');
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'تم روشن';
+                if (headerSubtitle) {
+                    headerSubtitle.style.color = '#cbd5e1';
+                }
+                if (contentDiv) {
+                    contentDiv.style.background = '#1e293b';
+                    contentDiv.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.3)';
+                }
+                if (themeToggle) {
+                    themeToggle.style.background = '#1e293b';
+                    themeToggle.style.borderColor = '#334155';
+                    themeToggle.style.color = '#f1f5f9';
+                }
+            } else {
+                body.classList.remove('dark-mode');
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'تم دارک';
+                if (headerSubtitle) {
+                    headerSubtitle.style.color = '#6b7280';
+                }
+                if (contentDiv) {
+                    contentDiv.style.background = 'white';
+                    contentDiv.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+                }
+                if (themeToggle) {
+                    themeToggle.style.background = '#f3f4f6';
+                    themeToggle.style.borderColor = '#e5e7eb';
+                    themeToggle.style.color = '#1f2937';
+                }
+            }
+            localStorage.setItem('theme', theme);
+        }
+
+        // Toggle theme
+        if (themeToggle) {
+            themeToggle.addEventListener('click', function() {
+                const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                setTheme(newTheme);
+            });
+        }
+
+        // Initialize theme on page load
+        initTheme();
+
+        // Listen for system theme changes
+        if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+                if (!savedTheme) {
+                    setTheme(e.matches ? 'dark' : 'light');
+                }
+            });
+        }
+
+        // Range value display
+        const rangeInput = document.getElementById('range-input');
+        const rangeValue = document.getElementById('range-value');
+        if (rangeInput && rangeValue) {
+            rangeInput.addEventListener('input', function() {
+                rangeValue.textContent = this.value;
+            });
+        }
+
+        // File input display filename
+        const fileInputs = document.querySelectorAll('.field-file input[type="file"]');
+        fileInputs.forEach(input => {
+            input.addEventListener('change', function() {
+                const filename = this.files[0]?.name;
+                if (filename) {
+                    let filenameDiv = this.closest('.field-file').querySelector('.field-file__filename');
+                    if (!filenameDiv) {
+                        filenameDiv = document.createElement('div');
+                        filenameDiv.className = 'field-file__filename';
+                        this.closest('.field-file').appendChild(filenameDiv);
+                    }
+                    filenameDiv.textContent = `فایل انتخاب شده: ${filename}`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

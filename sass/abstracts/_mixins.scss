@@ -1,0 +1,247 @@
+// ============================================
+// Mixins
+// ============================================
+
+@import 'variables';
+
+// Field Base
+@mixin field-base {
+  width: 100%;
+  font-family: $font-family;
+  font-size: $font-size-base;
+  line-height: 1.5;
+  color: $text-color;
+  background-color: $bg-color;
+  border: $border-width solid $border-color;
+  border-radius: $border-radius-md;
+  transition: border-color $transition-base, box-shadow $transition-base, background-color $transition-base;
+  outline: none;
+  
+  &::placeholder {
+    color: $text-lighter;
+    opacity: 1;
+  }
+  
+  &:hover {
+    border-color: $border-dark;
+  }
+  
+  &:focus {
+    border-color: $primary-color;
+    box-shadow: $shadow-focus;
+  }
+  
+  &:disabled {
+    background-color: $bg-light;
+    border-color: $border-color;
+    color: $text-lighter;
+    cursor: not-allowed;
+    opacity: 0.6;
+    
+    &:hover {
+      border-color: $border-color;
+    }
+  }
+  
+  &:read-only {
+    background-color: $bg-light;
+    cursor: default;
+  }
+}
+
+// Field Sizes
+@mixin field-size($height, $padding-x, $font-size: $font-size-base) {
+  height: $height;
+  padding: 0 $padding-x;
+  font-size: $font-size;
+}
+
+@mixin field-sm {
+  @include field-size($field-height-sm, $field-padding-x-sm, $font-size-sm);
+}
+
+@mixin field-md {
+  @include field-size($field-height-md, $field-padding-x-md, $font-size-base);
+}
+
+@mixin field-lg {
+  @include field-size($field-height-lg, $field-padding-x-lg, $font-size-lg);
+}
+
+// Field States
+@mixin field-error {
+  border-color: $danger-color;
+  
+  &:focus {
+    border-color: $danger-color;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+  }
+}
+
+@mixin field-success {
+  border-color: $success-color;
+  
+  &:focus {
+    border-color: $success-color;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+  }
+}
+
+@mixin field-warning {
+  border-color: $warning-color;
+  
+  &:focus {
+    border-color: $warning-color;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+  }
+}
+
+// Flexbox
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Text truncate
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Clearfix
+@mixin clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+// ============================================
+// Animation Mixins
+// ============================================
+
+// Animation base
+@mixin animation($name, $duration: $transition-base, $timing: ease, $delay: 0s, $iteration: 1, $direction: normal, $fill: both) {
+  animation-name: $name;
+  animation-duration: $duration;
+  animation-timing-function: $timing;
+  animation-delay: $delay;
+  animation-iteration-count: $iteration;
+  animation-direction: $direction;
+  animation-fill-mode: $fill;
+}
+
+// Shake animation
+@mixin shake($duration: 0.5s) {
+  @include animation(shake, $duration);
+}
+
+// Pulse animation
+@mixin pulse($duration: 2s) {
+  @include animation(pulse, $duration, ease-in-out, 0s, infinite);
+}
+
+// Pulse Scale animation
+@mixin pulseScale($duration: 2s) {
+  @include animation(pulseScale, $duration, ease-in-out, 0s, infinite);
+}
+
+// Fade In animation
+@mixin fadeIn($duration: $transition-base) {
+  @include animation(fadeIn, $duration);
+}
+
+// Fade Out animation
+@mixin fadeOut($duration: $transition-base) {
+  @include animation(fadeOut, $duration);
+}
+
+// Slide In Right animation
+@mixin slideInRight($duration: $transition-base) {
+  @include animation(slideInRight, $duration);
+}
+
+// Slide In Left animation
+@mixin slideInLeft($duration: $transition-base) {
+  @include animation(slideInLeft, $duration);
+}
+
+// Slide Down animation
+@mixin slideDown($duration: $transition-base) {
+  @include animation(slideDown, $duration);
+}
+
+// Slide Up animation
+@mixin slideUp($duration: $transition-base) {
+  @include animation(slideUp, $duration);
+}
+
+// Bounce animation
+@mixin bounce($duration: 1s) {
+  @include animation(bounce, $duration);
+}
+
+// Scale In animation
+@mixin scaleIn($duration: $transition-base) {
+  @include animation(scaleIn, $duration);
+}
+
+// Scale Out animation
+@mixin scaleOut($duration: $transition-base) {
+  @include animation(scaleOut, $duration);
+}
+
+// Rotate animation
+@mixin rotate($duration: 1s, $iteration: infinite) {
+  @include animation(rotate, $duration, linear, 0s, $iteration);
+}
+
+// Spin animation
+@mixin spin($duration: 1s, $iteration: infinite) {
+  @include animation(spin, $duration, linear, 0s, $iteration);
+}
+
+// Glow animation
+@mixin glow($duration: 2s) {
+  @include animation(glow, $duration, ease-in-out, 0s, infinite);
+}
+
+// Float animation
+@mixin float($duration: 3s) {
+  @include animation(float, $duration, ease-in-out, 0s, infinite);
+}
+
+// Wobble animation
+@mixin wobble($duration: 1s) {
+  @include animation(wobble, $duration);
+}
+
+// Zoom In animation
+@mixin zoomIn($duration: $transition-base) {
+  @include animation(zoomIn, $duration);
+}
+
+// Zoom Out animation
+@mixin zoomOut($duration: $transition-base) {
+  @include animation(zoomOut, $duration);
+}
+
+// Field Focus animation
+@mixin fieldFocusIn($duration: $transition-fast) {
+  @include animation(fieldFocusIn, $duration);
+}
+
+// Field Focus Out animation
+@mixin fieldFocusOut($duration: $transition-fast) {
+  @include animation(fieldFocusOut, $duration);
+}
+

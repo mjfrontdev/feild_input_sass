@@ -1,0 +1,491 @@
+// ============================================
+// Field Animations
+// ============================================
+
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+@import '../abstracts/animations';
+
+// ============================================
+// Animated Field Classes
+// ============================================
+
+// Shake Animation (برای خطا)
+.field-input--shake,
+.field-textarea--shake,
+.field-select--shake {
+  &.field-input--error,
+  &.field-textarea--error,
+  &.field-select--error {
+    @include shake(0.5s);
+  }
+}
+
+// Pulse Animation
+.field-input--pulse,
+.field-textarea--pulse,
+.field-select--pulse {
+  @include pulse(2s);
+}
+
+// Fade In Animation
+.field-input--fade-in,
+.field-textarea--fade-in,
+.field-select--fade-in {
+  @include fadeIn(0.5s);
+}
+
+// Slide In Animation
+.field-input--slide-in,
+.field-textarea--slide-in,
+.field-select--slide-in {
+  @include slideInRight(0.5s);
+}
+
+// Bounce Animation
+.field-input--bounce,
+.field-textarea--bounce,
+.field-select--bounce {
+  @include bounce(1s);
+}
+
+// Scale In Animation
+.field-input--scale-in,
+.field-textarea--scale-in,
+.field-select--scale-in {
+  @include scaleIn(0.3s);
+}
+
+// Zoom In Animation
+.field-input--zoom-in,
+.field-textarea--zoom-in,
+.field-select--zoom-in {
+  @include zoomIn(0.3s);
+}
+
+// Float Animation
+.field-input--float,
+.field-textarea--float,
+.field-select--float {
+  @include float(3s);
+}
+
+// Wobble Animation
+.field-input--wobble,
+.field-textarea--wobble,
+.field-select--wobble {
+  @include wobble(1s);
+}
+
+// ============================================
+// Enhanced Field Base with Animations
+// ============================================
+
+.field-input,
+.field-textarea,
+.field-select {
+  // Focus animation
+  &:focus {
+    @include fieldFocusIn(0.2s);
+  }
+
+  // Enhanced hover transition
+  transition: all $transition-base,
+              transform $transition-fast,
+              box-shadow $transition-base;
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  // Error shake on blur if error
+  &.field-input--error,
+  &.field-textarea--error,
+  &.field-select--error {
+    &:invalid {
+      @include shake(0.5s);
+    }
+  }
+
+  // Success pulse
+  &.field-input--success,
+  &.field-textarea--success,
+  &.field-select--success {
+    &::after {
+      content: '✓';
+      position: absolute;
+      right: $spacing-md;
+      top: 50%;
+      transform: translateY(-50%);
+      color: $success-color;
+      font-weight: bold;
+      @include scaleIn(0.3s);
+    }
+  }
+
+  // Loading shimmer
+  &--loading {
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+      );
+      @include animation(shimmer, 1.5s, linear, 0s, infinite);
+    }
+  }
+}
+
+// ============================================
+// Checkbox & Radio Animations
+// ============================================
+
+.field-checkbox,
+.field-radio {
+  input[type="checkbox"],
+  input[type="radio"] {
+    &:checked ~ .field-checkbox__indicator,
+    &:checked ~ .field-radio__indicator {
+      @include scaleIn(0.2s);
+      
+      &::after {
+        @include scaleIn(0.2s);
+      }
+    }
+
+    &:focus ~ .field-checkbox__indicator,
+    &:focus ~ .field-radio__indicator {
+      @include pulseScale(1.5s);
+    }
+  }
+}
+
+// Checkbox Bounce animation
+.field-checkbox--bounce {
+  input[type="checkbox"]:checked ~ .field-checkbox__indicator {
+    @include bounce(0.5s);
+    
+    &::after {
+      @include bounce(0.5s);
+    }
+  }
+}
+
+// Checkbox Pulse animation
+.field-checkbox--pulse {
+  input[type="checkbox"]:checked ~ .field-checkbox__indicator {
+    @include pulse(2s);
+  }
+}
+
+// Radio Bounce animation
+.field-radio--bounce {
+  input[type="radio"]:checked ~ .field-radio__indicator {
+    @include bounce(0.5s);
+    
+    &::after {
+      @include bounce(0.5s);
+    }
+  }
+}
+
+// Radio Pulse animation
+.field-radio--pulse {
+  input[type="radio"]:checked ~ .field-radio__indicator {
+    @include pulse(2s);
+    
+    &::after {
+      @include pulse(2s);
+    }
+  }
+}
+
+// ============================================
+// Switch Animations
+// ============================================
+
+.field-switch {
+  input[type="checkbox"] {
+    &:checked ~ .field-switch__slider {
+      @include scaleIn(0.2s);
+    }
+
+    &:focus ~ .field-switch__slider {
+      @include glow(2s);
+    }
+  }
+
+  &--bounce {
+    input[type="checkbox"]:checked ~ .field-switch__slider {
+      @include bounce(0.5s);
+    }
+  }
+}
+
+// ============================================
+// File Input Animations
+// ============================================
+
+.field-file {
+  &__label {
+    transition: all $transition-base,
+                transform $transition-fast;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: $shadow-md;
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  &--pulse {
+    .field-file__label {
+      @include pulse(2s);
+    }
+  }
+
+  &--float {
+    .field-file__label {
+      @include float(3s);
+    }
+  }
+}
+
+// ============================================
+// Range Input Animations
+// ============================================
+
+.field-range {
+  transition: all $transition-base;
+
+  &::-webkit-slider-thumb,
+  &::-moz-range-thumb {
+    transition: all $transition-base,
+                transform $transition-fast;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+
+  &--pulse {
+    &::-webkit-slider-thumb,
+    &::-moz-range-thumb {
+      @include pulseScale(2s);
+    }
+  }
+
+  &--glow {
+    &::-webkit-slider-thumb,
+    &::-moz-range-thumb {
+      @include glow(2s);
+    }
+  }
+}
+
+// ============================================
+// Input Group Animations
+// ============================================
+
+.field-input-group {
+  transition: all $transition-base;
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+}
+
+.field-input-group--slide-in {
+  @include slideInRight(0.5s);
+}
+
+.field-input-group--fade-in {
+  @include fadeIn(0.5s);
+}
+
+// ============================================
+// Field Wrapper Animations
+// ============================================
+
+.field-wrapper {
+  &--fade-in {
+    @include fadeIn(0.5s);
+  }
+
+  &--slide-down {
+    @include slideDown(0.5s);
+  }
+
+  &--scale-in {
+    @include scaleIn(0.3s);
+  }
+
+  // Error message animations
+  .field-error {
+    @include slideDown(0.3s);
+    
+    &::before {
+      @include spin(1s);
+      display: inline-block;
+    }
+  }
+
+  .field-success {
+    @include fadeIn(0.3s);
+    
+    &::before {
+      @include scaleIn(0.3s);
+      display: inline-block;
+    }
+  }
+}
+
+// ============================================
+// Ripple Effect (برای کلیک)
+// ============================================
+
+.field-input,
+.field-textarea,
+.field-select,
+.field-checkbox,
+.field-radio,
+.field-file__label {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(37, 99, 235, 0.3);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  &:active::after {
+    width: 300px;
+    height: 300px;
+    @include animation(ripple, 0.6s, ease-out);
+    opacity: 1;
+  }
+}
+
+// ============================================
+// Placeholder Animation
+// ============================================
+
+@keyframes placeholderShimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.field-input,
+.field-textarea {
+  &::placeholder {
+    transition: opacity $transition-base,
+                transform $transition-base;
+  }
+
+  &--animated-placeholder {
+    &::placeholder {
+      @include animation(placeholderMove, 3s, ease-in-out, 0s, infinite);
+    }
+  }
+}
+
+// ============================================
+// Loading State
+// ============================================
+
+.field-input--loading,
+.field-textarea--loading,
+.field-select--loading {
+  position: relative;
+  color: transparent;
+  pointer-events: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: $spacing-md;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    border: 2px solid $border-color;
+    border-top-color: $primary-color;
+    border-radius: 50%;
+    @include spin(0.8s, infinite);
+  }
+}
+
+// ============================================
+// Success State with Icon Animation
+// ============================================
+
+.field-wrapper {
+  position: relative;
+
+  &.field-wrapper--success {
+    .field-input,
+    .field-textarea,
+    .field-select {
+      &::after {
+        content: '✓';
+        position: absolute;
+        right: $spacing-md;
+        top: 50%;
+        transform: translateY(-50%) scale(0);
+        color: $success-color;
+        font-weight: bold;
+        font-size: $font-size-lg;
+        @include animation(successCheck, 0.5s, ease-out, 0s, 1, normal, forwards);
+      }
+    }
+  }
+
+  &.field-wrapper--error {
+    .field-input,
+    .field-textarea,
+    .field-select {
+      &::after {
+        content: '✕';
+        position: absolute;
+        right: $spacing-md;
+        top: 50%;
+        transform: translateY(-50%) scale(0);
+        color: $danger-color;
+        font-weight: bold;
+        font-size: $font-size-lg;
+        @include animation(errorX, 0.5s, ease-out, 0s, 1, normal, forwards);
+      }
+    }
+  }
+}
+

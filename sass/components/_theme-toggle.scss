@@ -1,0 +1,54 @@
+// ============================================
+// Theme Toggle Button
+// ============================================
+
+@import '../abstracts/variables';
+
+.theme-toggle {
+  position: absolute;
+  top: 2rem;
+  left: 0;
+  background: $bg-light;
+  border: $border-width solid $border-color;
+  border-radius: $border-radius-md;
+  padding: $spacing-sm $spacing-md;
+  cursor: pointer;
+  font-size: $font-size-sm;
+  transition: all $transition-base;
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  font-family: $font-family;
+  color: $text-color;
+
+  &:hover {
+    background: $bg-dark;
+    border-color: $border-dark;
+    transform: translateY(-1px);
+    box-shadow: $shadow-sm;
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &__icon {
+    font-size: 1.125rem;
+  }
+
+  &__text {
+    font-weight: $font-weight-medium;
+  }
+}
+
+.dark-mode .theme-toggle {
+  background: $dark-bg-light;
+  border-color: $dark-border-color;
+  color: $dark-text-color;
+
+  &:hover {
+    background: $dark-bg-dark;
+    border-color: $dark-border-dark;
+  }
+}
+

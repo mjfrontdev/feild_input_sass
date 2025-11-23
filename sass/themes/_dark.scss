@@ -1,0 +1,500 @@
+// ============================================
+// Dark Theme
+// ============================================
+
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+body.dark-mode,
+.dark-mode {
+  background-color: $dark-bg-color;
+  color: $dark-text-color;
+
+  // ============================================
+  // Typography
+  // ============================================
+
+  h1, h2, h3, h4, h5, h6 {
+    color: $dark-text-color;
+  }
+
+  p, label {
+    color: $dark-text-light;
+  }
+
+  .help-text {
+    color: $dark-text-lighter;
+  }
+
+  // ============================================
+  // Input Fields
+  // ============================================
+
+  .field-input {
+    background-color: $dark-bg-light;
+    border-color: $dark-border-color;
+    color: $dark-text-color;
+
+    &::placeholder {
+      color: $dark-text-lighter;
+    }
+
+    &:hover {
+      border-color: $dark-border-dark;
+    }
+
+    &:focus {
+      border-color: $primary-color;
+      box-shadow: $dark-shadow-focus;
+    }
+
+    &:disabled {
+      background-color: $dark-bg-dark;
+      border-color: $dark-border-color;
+      color: $dark-text-lighter;
+    }
+
+    &:read-only {
+      background-color: $dark-bg-dark;
+    }
+
+    &--error {
+      border-color: $danger-color;
+      
+      &:focus {
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
+      }
+    }
+
+    &--success {
+      border-color: $success-color;
+      
+      &:focus {
+        box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.3);
+      }
+    }
+
+    &--warning {
+      border-color: $warning-color;
+      
+      &:focus {
+        box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.3);
+      }
+    }
+
+    &[type="date"],
+    &[type="time"],
+    &[type="datetime-local"],
+    &[type="month"],
+    &[type="week"] {
+      &::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+        opacity: 0.7;
+        
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  // ============================================
+  // Textarea
+  // ============================================
+
+  .field-textarea {
+    background-color: $dark-bg-light;
+    border-color: $dark-border-color;
+    color: $dark-text-color;
+
+    &::placeholder {
+      color: $dark-text-lighter;
+    }
+
+    &:hover {
+      border-color: $dark-border-dark;
+    }
+
+    &:focus {
+      border-color: $primary-color;
+      box-shadow: $dark-shadow-focus;
+    }
+
+    &:disabled {
+      background-color: $dark-bg-dark;
+      border-color: $dark-border-color;
+      color: $dark-text-lighter;
+    }
+
+    &:read-only {
+      background-color: $dark-bg-dark;
+    }
+
+    &--error {
+      border-color: $danger-color;
+      
+      &:focus {
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
+      }
+    }
+
+    &--success {
+      border-color: $success-color;
+      
+      &:focus {
+        box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.3);
+      }
+    }
+
+    &--warning {
+      border-color: $warning-color;
+      
+      &:focus {
+        box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.3);
+      }
+    }
+  }
+
+  // ============================================
+  // Select
+  // ============================================
+
+  .field-select {
+    background-color: $dark-bg-light;
+    border-color: $dark-border-color;
+    color: $dark-text-color;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23cbd5e1' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+
+    &:hover {
+      border-color: $dark-border-dark;
+    }
+
+    &:focus {
+      border-color: $primary-color;
+      box-shadow: $dark-shadow-focus;
+    }
+
+    &:disabled {
+      background-color: $dark-bg-dark;
+      border-color: $dark-border-color;
+      color: $dark-text-lighter;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    }
+
+    &--error {
+      border-color: $danger-color;
+      
+      &:focus {
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
+      }
+    }
+
+    &--success {
+      border-color: $success-color;
+      
+      &:focus {
+        box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.3);
+      }
+    }
+
+    &--warning {
+      border-color: $warning-color;
+      
+      &:focus {
+        box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.3);
+      }
+    }
+
+    option {
+      background-color: $dark-bg-light;
+      color: $dark-text-color;
+    }
+  }
+
+  // ============================================
+  // Checkbox
+  // ============================================
+
+  .field-checkbox {
+    &__indicator {
+      background-color: $dark-bg-light;
+      border-color: $dark-border-color;
+
+      &::after {
+        border-color: $dark-bg-light;
+      }
+    }
+
+    &__label {
+      color: $dark-text-color;
+    }
+
+    input[type="checkbox"] {
+      &:checked ~ .field-checkbox__indicator {
+        background-color: $primary-color;
+        border-color: $primary-color;
+      }
+
+      &:disabled ~ .field-checkbox__indicator {
+        background-color: $dark-bg-dark;
+        border-color: $dark-border-color;
+      }
+
+      &:disabled ~ .field-checkbox__label {
+        color: $dark-text-lighter;
+      }
+
+      &:focus ~ .field-checkbox__indicator {
+        box-shadow: $dark-shadow-focus;
+      }
+    }
+
+    &--error {
+      .field-checkbox__indicator {
+        border-color: $danger-color;
+      }
+    }
+  }
+
+  // ============================================
+  // Radio
+  // ============================================
+
+  .field-radio {
+    &__indicator {
+      background-color: $dark-bg-light;
+      border-color: $dark-border-color;
+
+      &::after {
+        background-color: $primary-color;
+      }
+    }
+
+    &__label {
+      color: $dark-text-color;
+    }
+
+    input[type="radio"] {
+      &:disabled ~ .field-radio__indicator {
+        background-color: $dark-bg-dark;
+        border-color: $dark-border-color;
+      }
+
+      &:disabled ~ .field-radio__label {
+        color: $dark-text-lighter;
+      }
+
+      &:focus ~ .field-radio__indicator {
+        box-shadow: $dark-shadow-focus;
+      }
+    }
+
+    &--error {
+      .field-radio__indicator {
+        border-color: $danger-color;
+      }
+    }
+  }
+
+  // ============================================
+  // File Input
+  // ============================================
+
+  .field-file {
+    &__label {
+      background-color: $dark-bg-light;
+      border-color: $dark-border-color;
+      color: $dark-text-color;
+
+      &:hover {
+        background-color: $dark-bg-dark;
+        border-color: $primary-color;
+      }
+    }
+
+    &__filename {
+      color: $dark-text-light;
+    }
+
+    input[type="file"] {
+      &:disabled + .field-file__label {
+        background-color: $dark-bg-dark;
+        border-color: $dark-border-color;
+        color: $dark-text-lighter;
+      }
+
+      &:focus + .field-file__label {
+        box-shadow: $dark-shadow-focus;
+      }
+    }
+
+    &--error {
+      .field-file__label {
+        border-color: $danger-color;
+      }
+    }
+  }
+
+  // ============================================
+  // Range Input
+  // ============================================
+
+  .field-range {
+    background: $dark-bg-dark;
+
+    &::-webkit-slider-thumb {
+      background: $primary-color;
+      border-color: $dark-bg-light;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+
+      &:hover {
+        background: $primary-light;
+      }
+    }
+
+    &::-moz-range-thumb {
+      background: $primary-color;
+      border-color: $dark-bg-light;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+
+      &:hover {
+        background: $primary-light;
+      }
+    }
+
+    &--error {
+      background: rgba(239, 68, 68, 0.3);
+
+      &::-webkit-slider-thumb,
+      &::-moz-range-thumb {
+        background: $danger-color;
+      }
+    }
+  }
+
+  // ============================================
+  // Input Group
+  // ============================================
+
+  .field-input-group {
+    .field-input {
+      background-color: $dark-bg-light;
+      border-color: $dark-border-color;
+      color: $dark-text-color;
+    }
+
+    &__prepend,
+    &__append {
+      background-color: $dark-bg-dark;
+      border-color: $dark-border-color;
+      color: $dark-text-light;
+    }
+
+    &--error {
+      .field-input {
+        border-color: $danger-color;
+      }
+
+      .field-input-group__prepend,
+      .field-input-group__append {
+        border-color: $danger-color;
+      }
+    }
+  }
+
+  // ============================================
+  // Switch
+  // ============================================
+
+  .field-switch {
+    &__slider {
+      background-color: $dark-border-color;
+
+      &::before {
+        background-color: $dark-bg-light;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    &__label {
+      color: $dark-text-color;
+    }
+
+    input[type="checkbox"] {
+      &:checked ~ .field-switch__slider {
+        background-color: $primary-color;
+      }
+
+      &:disabled ~ .field-switch__slider {
+        opacity: 0.5;
+      }
+
+      &:focus ~ .field-switch__slider {
+        box-shadow: $dark-shadow-focus;
+      }
+    }
+
+    &--error {
+      .field-switch__slider {
+        background-color: rgba(239, 68, 68, 0.4);
+      }
+    }
+  }
+
+  // ============================================
+  // Field Wrapper
+  // ============================================
+
+  .field-wrapper {
+    label {
+      color: $dark-text-color;
+    }
+
+    .field-help {
+      color: $dark-text-lighter;
+    }
+
+    .field-error {
+      color: $danger-color;
+    }
+
+    .field-success {
+      color: $success-color;
+    }
+  }
+
+  // ============================================
+  // Container
+  // ============================================
+
+  .container > div {
+    background-color: $dark-bg-light;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+  }
+
+  // ============================================
+  // Theme Toggle
+  // ============================================
+
+  .theme-toggle {
+    background: $dark-bg-light;
+    border-color: $dark-border-color;
+    color: $dark-text-color;
+
+    &:hover {
+      background: $dark-bg-dark;
+      border-color: $dark-border-dark;
+    }
+  }
+
+  // ============================================
+  // Header
+  // ============================================
+
+  header {
+    p, .header-subtitle {
+      color: $dark-text-light !important;
+    }
+  }
+}
+
