@@ -4,6 +4,7 @@
 
 // Abstracts
 @import 'abstracts/variables';
+@import 'abstracts/functions';
 @import 'abstracts/mixins';
 @import 'abstracts/animations';
 
@@ -12,8 +13,7 @@
 @import 'base/typography';
 
 // Components
-@import 'components/fields';
-@import 'components/field-animations';
+@import 'components/fancy-inputs';
 @import 'components/theme-toggle';
 
 // Layout

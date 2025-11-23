@@ -1,0 +1,112 @@
+// ============================================
+// Sass Functions
+// ============================================
+
+@use "sass:map";
+@import 'variables';
+
+// ============================================
+// Color Functions
+// ============================================
+
+// Lighten color
+@function lighten-color($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+// Darken color
+@function darken-color($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
+// Calculate contrast
+@function contrast-color($color) {
+  $lightness: lightness($color);
+  @if $lightness > 50% {
+    @return $text-color;
+  } @else {
+    @return $dark-text-color;
+  }
+}
+
+// ============================================
+// Math Functions
+// ============================================
+
+// Strip unit
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+// Convert px to rem
+@function rem($pixels, $base: 16) {
+  @return (strip-unit($pixels) / $base) * 1rem;
+}
+
+// Convert px to em
+@function em($pixels, $base: 16) {
+  @return (strip-unit($pixels) / $base) * 1em;
+}
+
+// ============================================
+// Spacing Functions
+// ============================================
+
+// Get spacing
+@function spacing($multiplier: 1) {
+  @return $spacing-md * $multiplier;
+}
+
+// ============================================
+// Z-index Function
+// ============================================
+
+$z-indexes: (
+  'dropdown': 1000,
+  'sticky': 1020,
+  'fixed': 1030,
+  'modal-backdrop': 1040,
+  'modal': 1050,
+  'popover': 1060,
+  'tooltip': 1070,
+);
+
+@function z-index($key) {
+  @if map.has-key($z-indexes, $key) {
+    @return map.get($z-indexes, $key);
+  }
+  @warn "Unknown z-index: #{$key}";
+  @return null;
+}
+
+// ============================================
+// Gradient Functions
+// ============================================
+
+@function gradient($direction: 45deg, $color1: $primary-color, $color2: $secondary-color) {
+  @return linear-gradient($direction, $color1, $color2);
+}
+
+@function gradient-radial($color1: $primary-color, $color2: $secondary-color) {
+  @return radial-gradient(circle, $color1, $color2);
+}
+
+// ============================================
+// Shadow Functions
+// ============================================
+
+@function shadow($level: 1, $color: rgba(0, 0, 0, 0.1)) {
+  $shadows: (
+    1: 0 1px 3px $color,
+    2: 0 4px 6px -1px $color,
+    3: 0 10px 15px -3px $color,
+    4: 0 20px 25px -5px $color,
+    5: 0 25px 50px -12px $color,
+  );
+  
+  @if map.has-key($shadows, $level) {
+    @return map.get($shadows, $level);
+  }
+  @warn "Unknown shadow level: #{$level}";
+  @return null;
+}

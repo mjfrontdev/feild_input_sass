@@ -1,0 +1,740 @@
+// ============================================
+// Fancy Input Components
+// ============================================
+
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+@import '../abstracts/functions';
+@import '../abstracts/animations';
+
+// ============================================
+// Base Input Styles
+// ============================================
+
+%input-base {
+  width: 100%;
+  font-family: $font-family;
+  font-size: $font-size-base;
+  line-height: 1.5;
+  outline: none;
+  border: none;
+  background: transparent;
+  color: $text-color;
+  transition: all $transition-base;
+  
+  &::placeholder {
+    color: transparent;
+    transition: color $transition-base;
+  }
+  
+  &:focus,
+  &:not(:placeholder-shown) {
+    &::placeholder {
+      color: $text-lighter;
+    }
+  }
+}
+
+// ============================================
+// 1. Floating Label Input (Material Design)
+// ============================================
+
+.input-floating {
+  position: relative;
+  margin-bottom: $spacing-xl;
+  
+  &__field {
+    @extend %input-base;
+    width: 100%;
+    padding: $spacing-md $spacing-md $spacing-sm;
+    border-bottom: 2px solid $border-color;
+    background-color: transparent;
+    
+    &:focus,
+    &:not(:placeholder-shown) {
+      border-bottom-color: $primary-color;
+      
+      + .input-floating__label {
+        transform: translateY(-1.5rem) scale(0.85);
+        color: $primary-color;
+      }
+    }
+    
+    &:focus {
+      box-shadow: 0 2px 0 0 $primary-color;
+    }
+  }
+  
+  &__label {
+    position: absolute;
+    right: $spacing-md;
+    top: $spacing-md;
+    color: $text-lighter;
+    pointer-events: none;
+    transform-origin: right top;
+    transition: transform $transition-base, color $transition-base;
+    background: $bg-color;
+    padding: 0 $spacing-xs;
+    font-size: $font-size-base;
+  }
+  
+  &__line {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 2px;
+    background: gradient(90deg, $primary-color, $secondary-color);
+    transition: width $transition-base;
+  }
+  
+  &__field:focus ~ &__line {
+    width: 100%;
+  }
+  
+  // Icon support
+  &--with-icon {
+    .input-floating__field {
+      padding-right: 3rem;
+    }
+    
+    .input-floating__label {
+      right: 3rem;
+    }
+    
+    .input-floating__icon {
+      position: absolute;
+      right: $spacing-md;
+      top: 50%;
+      transform: translateY(-50%);
+      color: $text-light;
+      transition: color $transition-base;
+      pointer-events: none;
+    }
+    
+    .input-floating__field:focus ~ .input-floating__icon {
+      color: $primary-color;
+      @include pulse(2s);
+    }
+  }
+}
+
+// ============================================
+// 2. Glassmorphism Input
+// ============================================
+
+.input-glass {
+  position: relative;
+  margin-bottom: $spacing-xl;
+  
+  &__field {
+    @extend %input-base;
+    width: 100%;
+    padding: $spacing-lg;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: $border-radius-lg;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    
+    &::placeholder {
+      color: rgba(107, 114, 128, 0.7);
+    }
+    
+    &:focus {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(37, 99, 235, 0.5);
+      box-shadow: 0 8px 32px 0 rgba(37, 99, 235, 0.2),
+                  inset 0 0 20px rgba(37, 99, 235, 0.1);
+      transform: translateY(-2px);
+    }
+    
+    &:hover {
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+  }
+  
+  &__label {
+    display: block;
+    margin-bottom: $spacing-sm;
+    color: $text-color;
+    font-weight: $font-weight-medium;
+    font-size: $font-size-sm;
+  }
+  
+  // Gradient border variant
+  &--gradient {
+    position: relative;
+    padding: 2px;
+    background: gradient(135deg, $primary-color, $secondary-color);
+    border-radius: $border-radius-lg;
+    
+    .input-glass__field {
+      background: $bg-color;
+      margin: 0;
+    }
+  }
+}
+
+// ============================================
+// 3. Gradient Border Input
+// ============================================
+
+.input-gradient {
+  position: relative;
+  margin-bottom: $spacing-xl;
+  
+  &__wrapper {
+    position: relative;
+    padding: 2px;
+    background: linear-gradient(135deg, $primary-color, $secondary-color, $warning-color);
+    background-size: 200% 200%;
+    border-radius: $border-radius-md;
+    @include animation(gradient, 3s, ease, 0s, infinite);
+    
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 2px;
+      background: $bg-color;
+      border-radius: calc(#{$border-radius-md} - 2px);
+      z-index: 0;
+    }
+  }
+  
+  &__field {
+    @extend %input-base;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding: $spacing-md;
+    background: transparent;
+    border-radius: calc(#{$border-radius-md} - 2px);
+    
+    &::placeholder {
+      color: $text-lighter;
+    }
+    
+    &:focus {
+      box-shadow: inset 0 0 0 2px transparent;
+      
+      + .input-gradient__icon {
+        color: $primary-color;
+        transform: translateY(-50%) scale(1.2);
+      }
+    }
+  }
+  
+  &__label {
+    display: block;
+    margin-bottom: $spacing-sm;
+    color: $text-color;
+    font-weight: $font-weight-medium;
+    font-size: $font-size-sm;
+  }
+  
+  &__icon {
+    position: absolute;
+    left: $spacing-md;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $text-light;
+    transition: all $transition-base;
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  &--with-icon {
+    .input-gradient__field {
+      padding-left: 3rem;
+    }
+  }
+}
+
+// ============================================
+// 4. Icon Input (Modern)
+// ============================================
+
+.input-icon {
+  position: relative;
+  margin-bottom: $spacing-xl;
+  
+  &__field {
+    @extend %input-base;
+    width: 100%;
+    padding: $spacing-md $spacing-md $spacing-md 3.5rem;
+    background: $bg-light;
+    border: 2px solid transparent;
+    border-radius: $border-radius-md;
+    transition: all $transition-base;
+    
+    &::placeholder {
+      color: $text-lighter;
+    }
+    
+    &:focus {
+      background: $bg-color;
+      border-color: $primary-color;
+      box-shadow: shadow(2, rgba(37, 99, 235, 0.2));
+      padding-left: 4rem;
+      
+      ~ .input-icon__icon {
+        color: $primary-color;
+        transform: translateY(-50%) scale(1.1) rotate(5deg);
+      }
+      
+      ~ .input-icon__label {
+        color: $primary-color;
+        transform: translateY(-100%) scale(0.9);
+      }
+    }
+    
+    &:not(:placeholder-shown) {
+      ~ .input-icon__label {
+        transform: translateY(-100%) scale(0.9);
+        opacity: 0.8;
+      }
+    }
+  }
+  
+  &__icon {
+    position: absolute;
+    left: $spacing-md;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $text-light;
+    transition: all $transition-base;
+    pointer-events: none;
+    font-size: $font-size-lg;
+  }
+  
+  &__label {
+    position: absolute;
+    right: $spacing-md;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $text-lighter;
+    pointer-events: none;
+    transition: all $transition-base;
+    font-size: $font-size-sm;
+    background: $bg-light;
+    padding: 0 $spacing-xs;
+  }
+  
+  &__field:focus ~ &__label {
+    background: $bg-color;
+  }
+  
+  // Success state
+  &--success {
+    .input-icon__field {
+      border-color: $success-color;
+      
+      &:focus {
+        box-shadow: shadow(2, rgba(34, 197, 94, 0.2));
+      }
+    }
+    
+    .input-icon__icon {
+      color: $success-color;
+    }
+    
+    &::after {
+      content: '✓';
+      position: absolute;
+      left: calc(100% - 2.5rem);
+      top: 50%;
+      transform: translateY(-50%);
+      color: $success-color;
+      font-weight: bold;
+      @include scaleIn(0.3s);
+    }
+  }
+}
+
+// ============================================
+// 5. Animated Underline Input
+// ============================================
+
+.input-underline {
+  position: relative;
+  margin-bottom: $spacing-xl;
+  
+  &__field {
+    @extend %input-base;
+    width: 100%;
+    padding: $spacing-md $spacing-md $spacing-sm;
+    border: none;
+    border-bottom: 2px solid $border-color;
+    background: transparent;
+    border-radius: 0;
+    
+    &::placeholder {
+      color: $text-lighter;
+      transition: opacity $transition-base;
+    }
+    
+    &:focus {
+      border-bottom-color: $primary-color;
+      
+      &::placeholder {
+        opacity: 0.5;
+      }
+      
+      ~ .input-underline__line {
+        width: 100%;
+        opacity: 1;
+      }
+      
+      ~ .input-underline__label {
+        color: $primary-color;
+        transform: translateY(-1.5rem) scale(0.85);
+      }
+    }
+    
+    &:not(:placeholder-shown) {
+      ~ .input-underline__label {
+        transform: translateY(-1.5rem) scale(0.85);
+      }
+    }
+  }
+  
+  &__line {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 3px;
+    background: gradient(90deg, $primary-color, $secondary-color);
+    border-radius: 2px;
+    opacity: 0;
+    transition: width $transition-slow, opacity $transition-base;
+    box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+  }
+  
+  &__label {
+    position: absolute;
+    right: $spacing-md;
+    top: $spacing-md;
+    color: $text-lighter;
+    pointer-events: none;
+    transform-origin: right top;
+    transition: transform $transition-base, color $transition-base;
+    background: $bg-color;
+    padding: 0 $spacing-xs;
+    font-size: $font-size-base;
+  }
+  
+  &__ripple {
+    position: absolute;
+    bottom: -2px;
+    right: 50%;
+    width: 0;
+    height: 2px;
+    background: $primary-color;
+    border-radius: 50%;
+    transform: translateX(50%);
+    transition: width $transition-base;
+    opacity: 0.6;
+  }
+  
+  &__field:focus ~ &__ripple {
+    width: 100%;
+    height: 2px;
+    border-radius: 0;
+  }
+}
+
+// ============================================
+// 6. Neumorphism Input
+// ============================================
+
+.input-neuro {
+  position: relative;
+  margin-bottom: $spacing-xl;
+  
+  &__field {
+    @extend %input-base;
+    width: 100%;
+    padding: $spacing-lg;
+    background: $bg-light;
+    border: none;
+    border-radius: $border-radius-lg;
+    box-shadow: 
+      8px 8px 16px rgba(0, 0, 0, 0.1),
+      -8px -8px 16px rgba(255, 255, 255, 0.9);
+    
+    &::placeholder {
+      color: $text-lighter;
+    }
+    
+    &:focus {
+      box-shadow: 
+        inset 4px 4px 8px rgba(0, 0, 0, 0.1),
+        inset -4px -4px 8px rgba(255, 255, 255, 0.9),
+        0 0 0 3px rgba(37, 99, 235, 0.1);
+      
+      ~ .input-neuro__label {
+        color: $primary-color;
+        transform: translateY(-1.2rem) scale(0.85);
+      }
+    }
+    
+    &:not(:placeholder-shown) {
+      ~ .input-neuro__label {
+        transform: translateY(-1.2rem) scale(0.85);
+      }
+    }
+  }
+  
+  &__label {
+    position: absolute;
+    right: $spacing-lg;
+    top: $spacing-lg;
+    color: $text-lighter;
+    pointer-events: none;
+    transform-origin: right top;
+    transition: transform $transition-base, color $transition-base;
+    background: $bg-light;
+    padding: 0 $spacing-xs;
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+  }
+  
+  &__glow {
+    position: absolute;
+    inset: -3px;
+    border-radius: $border-radius-lg;
+    background: gradient(135deg, $primary-color, $secondary-color);
+    opacity: 0;
+    filter: blur(10px);
+    transition: opacity $transition-base;
+    z-index: -1;
+  }
+  
+  &__field:focus ~ &__glow {
+    opacity: 0.3;
+    @include pulse(2s);
+  }
+}
+
+// ============================================
+// Dark Mode Support
+// ============================================
+
+.dark-mode {
+  // Floating Label
+  .input-floating {
+    &__field {
+      color: $dark-text-color;
+      border-bottom-color: $dark-border-color;
+      
+      &:focus {
+        border-bottom-color: $primary-color;
+        box-shadow: 0 2px 0 0 $primary-color;
+      }
+    }
+    
+    &__label {
+      color: $dark-text-light;
+      background: $dark-bg-color;
+      
+      .input-floating__field:focus ~ &,
+      .input-floating__field:not(:placeholder-shown) ~ & {
+        color: $primary-color;
+      }
+    }
+    
+    &__line {
+      background: linear-gradient(90deg, $primary-color, $secondary-color);
+    }
+  }
+  
+  // Glassmorphism
+  .input-glass {
+    &__label {
+      color: $dark-text-color;
+    }
+    
+    &__field {
+      background: rgba(30, 41, 59, 0.3);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: $dark-text-color;
+      
+      &::placeholder {
+        color: rgba(203, 213, 225, 0.7);
+      }
+      
+      &:focus {
+        background: rgba(30, 41, 59, 0.5);
+        border-color: rgba(37, 99, 235, 0.5);
+        box-shadow: 0 8px 32px 0 rgba(37, 99, 235, 0.2),
+                    inset 0 0 20px rgba(37, 99, 235, 0.1);
+      }
+      
+      &:hover {
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+    }
+    
+    &--gradient {
+      .input-glass__field {
+        background: $dark-bg-light;
+      }
+    }
+  }
+  
+  // Gradient Border
+  .input-gradient {
+    &__label {
+      color: $dark-text-color;
+    }
+    
+    &__wrapper {
+      &::before {
+        background: $dark-bg-color;
+      }
+    }
+    
+    &__field {
+      color: $dark-text-color;
+      
+      &::placeholder {
+        color: $dark-text-lighter;
+      }
+    }
+    
+    &__icon {
+      color: $dark-text-light;
+    }
+    
+    &__field:focus ~ &__icon {
+      color: $primary-color;
+    }
+  }
+  
+  // Icon Input
+  .input-icon {
+    &__field {
+      background: $dark-bg-light;
+      color: $dark-text-color;
+      
+      &::placeholder {
+        color: $dark-text-lighter;
+      }
+      
+      &:focus {
+        background: $dark-bg-color;
+        border-color: $primary-color;
+        
+        ~ .input-icon__label {
+          background: $dark-bg-color;
+          color: $primary-color;
+        }
+      }
+      
+      &:not(:placeholder-shown) {
+        ~ .input-icon__label {
+          background: $dark-bg-color;
+        }
+      }
+    }
+    
+    &__icon {
+      color: $dark-text-light;
+    }
+    
+    &__field:focus ~ &__icon {
+      color: $primary-color;
+    }
+    
+    &__label {
+      color: $dark-text-lighter;
+      background: $dark-bg-light;
+    }
+  }
+  
+  // Animated Underline
+  .input-underline {
+    &__field {
+      color: $dark-text-color;
+      border-bottom-color: $dark-border-color;
+      
+      &::placeholder {
+        color: $dark-text-lighter;
+      }
+      
+      &:focus {
+        border-bottom-color: $primary-color;
+        
+        ~ .input-underline__label {
+          color: $primary-color;
+          background: $dark-bg-color;
+        }
+      }
+      
+      &:not(:placeholder-shown) {
+        ~ .input-underline__label {
+          background: $dark-bg-color;
+        }
+      }
+    }
+    
+    &__label {
+      color: $dark-text-lighter;
+      background: $dark-bg-color;
+    }
+    
+    &__line {
+      background: linear-gradient(90deg, $primary-color, $secondary-color);
+    }
+    
+    &__ripple {
+      background: $primary-color;
+    }
+  }
+  
+  // Neumorphism
+  .input-neuro {
+    &__field {
+      background: $dark-bg-light;
+      color: $dark-text-color;
+      box-shadow: 
+        8px 8px 16px rgba(0, 0, 0, 0.3),
+        -8px -8px 16px rgba(255, 255, 255, 0.05);
+      
+      &::placeholder {
+        color: $dark-text-lighter;
+      }
+      
+      &:focus {
+        box-shadow: 
+          inset 4px 4px 8px rgba(0, 0, 0, 0.3),
+          inset -4px -4px 8px rgba(255, 255, 255, 0.05),
+          0 0 0 3px rgba(37, 99, 235, 0.1);
+        
+        ~ .input-neuro__label {
+          color: $primary-color;
+          background: $dark-bg-light;
+        }
+      }
+      
+      &:not(:placeholder-shown) {
+        ~ .input-neuro__label {
+          background: $dark-bg-light;
+        }
+      }
+    }
+    
+    &__label {
+      color: $dark-text-lighter;
+      background: $dark-bg-light;
+    }
+    
+    &__glow {
+      background: linear-gradient(135deg, $primary-color, $secondary-color);
+    }
+  }
+}
+
